@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.data.user.mapper.sampledb.UserMapper">
+
+    <insert id="insertUser">
+        insert into DBO_SAMPLE.REF_USER
+        (FIRST_NAME, LAST_NAME, COUNTRY, STREET, CITY, STATE, ZIP_CODE, CREATED_BY, CREATED_ON, MODIFIED_BY, MODIFIED_ON, IS_DELETED)
+        VALUES (#{firstName}, #{lastName},  #{country},  #{street},  #{city},  #{state},  #{zipcode}, #{createdBy}, NOW(), #{modifiedBy}, NOW(), 0)
+    </insert>
+
+    <select id="selectAllUsers">
+        select FIRST_NAME as firstName,
+               LAST_NAME as lastName,
+               COUNTRY as country,
+               STREET as street,
+               CITY as city,
+               STATE as state,
+               ZIP_CODE as zipcode
+        from DBO_SAMPLE.REF_USER
+        where IS_DELETED = 0
+    </select>
+
+</mapper>

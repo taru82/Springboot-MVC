@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true">
+
+    <property name="LOG_FILE" value="/var/log/${logstash.application}.log.json"/>
+
+    <jmxConfigurator/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t]
+                %-40.40logger{39} %X{X-REQUEST-ID} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%ex}}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!--Enable this to see SQL debug logs -->
+    <logger name="com.sample.data.v1.user.mapper.sampledb" level="DEBUG"/>
+    <!--    <logger name="application" level="DEBUG" /> -->
+
+
+</configuration>

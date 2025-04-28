@@ -1,0 +1,76 @@
+plugins {
+    id 'org.springframework.boot' version "${springboot_runtime_version}"
+    id 'io.freefair.lombok' version '6.6.3'
+}
+
+group rootProject.group
+version rootProject.version
+description 'Data REST Service'
+
+dependencies {
+
+    //health checks and metrics
+    implementation group: 'io.dropwizard.metrics', name: 'metrics-healthchecks', version: '3.1.2'
+
+    //springboot
+    api 'org.springframework.boot:spring-boot-starter-web'
+
+    //springboot-mybatis
+    api "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1"
+
+    //API-DOC - SWAGGER
+    api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+    api 'io.swagger.core.v3:swagger-annotations:2.2.22'
+
+    //MY Batis
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.2.0'
+    api "org.mybatis:mybatis:3.5.13"
+
+    //jersey
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    runtimeOnly 'org.glassfish.jersey.core:jersey-client:3.1.8'
+    runtimeOnly 'org.glassfish.jersey.media:jersey-media-json-jackson:3.1.8'
+    runtimeOnly 'org.glassfish.jersey.core:jersey-common:3.1.8'
+    runtimeOnly 'org.glassfish.jersey.inject:jersey-hk2:3.1.8'
+
+
+    //CSV
+    implementation "com.opencsv:opencsv:5.9"
+    implementation "org.apache.commons:commons-csv:1.8"
+
+    runtimeOnly 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+    runtimeOnly 'com.auth0:java-jwt:4.4.0'
+
+    implementation group: 'commons-io', name: 'commons-io', version: '2.15.1'
+
+    testImplementation "org.mockito:mockito-core:${mockito_core_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${test_junit_version}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${test_junit_version}"
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
+}
+
+springBoot {
+    mainClass = 'com.sample.data.DataApplication'
+}
+
+bootJar {
+    manifest {
+        attributes 'Premain-Class': 'com.newrelic.bootstrap.BootstrapAgent',
+                'Can-Redefine-Classes': true,
+                'Can-Retransform-Classes': true,
+                'Can-Set-Native-Method-Prefix': true
+    }
+
+    from('src/main/java') {
+        include '**/mapper/**/*.xml'
+    }
+    from("$buildDir/") {
+        include 'META-INF/pom.xml'
+    }
+}
+
+//disable plain jar from being built
+tasks.named("jar") {
+    enabled = false
+}
