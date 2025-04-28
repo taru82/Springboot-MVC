@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  ### MySQL Container
+  mysql:
+    container_name: sample-local-mysql-db
+    image: mysql:8.0.32
+    env_file:
+      - .env
+    volumes:
+      - ./scripts/set-up-master-roles.sql:/docker-entrypoint-initdb.d/set-up-master-roles.sql
+    build:
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - TZ=America/New_York
+    command: --character-set-server=utf8mb3 --collation-server=utf8mb3_general_ci

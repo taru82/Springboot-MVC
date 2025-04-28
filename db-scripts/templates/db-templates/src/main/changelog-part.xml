@@ -1,0 +1,15 @@
+<changeSet id="%__JIRA_STORY_PLACEHOLDER__%-1" author="%__USER_PLACEHOLDER__%">
+    <validCheckSum>ANY</validCheckSum>
+    <sqlFile path="schema/%__JIRA_STORY_PLACEHOLDER__%/CREATE_TABLE_%__TABLE_PLACEHOLDER__%.sql"
+             relativeToChangelogFile="true"/>
+</changeSet>
+        <!--    <changeSet id="%__JIRA_STORY_PLACEHOLDER__%-3" author="%__USER_PLACEHOLDER__%" >-->
+        <!--        <validCheckSum>ANY</validCheckSum>-->
+        <!--        <sqlFile path="schema/%__JIRA_STORY_PLACEHOLDER__%/MODIFY_TABLE_%__TABLE_PLACEHOLDER__%.sql" relativeToChangelogFile="true" />-->
+        <!--    </changeSet>-->
+        <!--    <changeSet id="%__JIRA_STORY_PLACEHOLDER__%-4" author="%__USER_PLACEHOLDER__%" >-->
+        <!--        <validCheckSum>ANY</validCheckSum>-->
+        <!--        <sqlFile path="schema/%__JIRA_STORY_PLACEHOLDER__%/RESET_TABLE_%__TABLE_PLACEHOLDER__%.sql" relativeToChangelogFile="true" />-->
+        <!--    </changeSet>-->
+
+

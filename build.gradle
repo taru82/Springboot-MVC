@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.32.0"
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'io.freefair.lombok' version '6.6.3'
+    id 'com.jfrog.artifactory' version '4.32.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+
+description 'Data REST Service'
+
+group 'com.sample'
+version = "${version}"
+
+
+allprojects {
+    apply plugin: 'com.jfrog.artifactory'
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}

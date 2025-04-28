@@ -1,0 +1,3 @@
+rootProject.name = 'data-service'
+
+include 'data-microservice'

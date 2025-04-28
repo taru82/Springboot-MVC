@@ -1,0 +1,2 @@
+DROP TABLE [[${definition.DBO_SCHEMA}]].%__TABLE_PLACEHOLDER__%;
+
